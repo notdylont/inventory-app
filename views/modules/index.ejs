@@ -3,9 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Station management</title>
   </head>
   <body>
-    <p>Hello</p>
+    <%- include('../partials/navbar.ejs') %>
+    <% modules.forEach((mod) => { %>
+      <div>
+        <h3><%= mod.name %> </h3>
+        <p><%= mod.description %></p>
+        <a href="/modules/<%= mod.id %>">View</a>
+      </div>
+   <% }) %>
   </body>
 </html>
