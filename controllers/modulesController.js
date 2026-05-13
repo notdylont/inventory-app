@@ -16,8 +16,10 @@ async function newModulesPost(req, res) {
 }
 
 async function moduleShow(req, res) {
-  const mod = await db.getModuleById(req.params.id);
-  res.render('modules/show', { mod: mod[0] });
+  const moduleId = req.params.id;
+  const mod = await db.getModuleById(moduleId);
+  const resources = await db.getAllModuleResources(moduleId);
+  res.render('modules/show', { mod: mod[0], resources: resources });
 }
 
 module.exports = {

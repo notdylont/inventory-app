@@ -7,6 +7,30 @@
   </head>
   <body>
     <%- include('../partials/navbar.ejs') %>
+    <a href="/modules">Back</a>
     <h3><%= mod.name %></h3>
+    <p><%= mod.description %></p>
+    <table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Unit</th>
+      <th>Low Stock Threshold</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% resources.forEach((resource) => { %>
+    <tr>
+      <td><%= resource.name %></td>
+      <td><%= resource.quantity %></td>
+      <td><%= resource.unit %></td>
+      <td><%= resource.low_stock_threshold %></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+    <a href="/resources/new?moduleId=<%= mod.id %>">Add a resource</a>
   </body>
 </html>
