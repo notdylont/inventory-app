@@ -32,6 +32,13 @@
       <td><%= resource.quantity %></td>
       <td><%= resource.unit %></td>
       <td><%= resource.low_stock_threshold %></td>
+      <td>
+        <a href="/resources/<%= resource.id %>/edit">Edit</a>
+        <form action="/resources/<%= resource.id %>/delete" method="POST">
+          <input type="hidden" name="moduleId" value="<%= resource.module_id %>">
+          <button type="submit">Delete</button>
+        </form>
+      </td>
     </tr>
     <% }) %>
   </tbody>

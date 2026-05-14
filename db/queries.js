@@ -42,7 +42,7 @@ async function getResourceById(id) {
   const { rows } = await pool.query(`SELECT * FROM resources WHERE id = $1`, [
     id,
   ]);
-  return rows;
+  return rows[0];
 }
 
 async function createResource(name, quantity, unit, threshold, moduleId) {
@@ -50,6 +50,19 @@ async function createResource(name, quantity, unit, threshold, moduleId) {
     `INSERT INTO resources (name, quantity, unit, low_stock_threshold, module_id) VALUES ($1, $2, $3, $4, $5)`,
     [name, quantity, unit, threshold, moduleId],
   );
+}
+
+async function updateResource(id, name, quantity, unit, threshold) {
+  await pool.query(
+    `UPDATE resources 
+                    SET name = $1, quantity = $2, unit = $3, low_stock_threshold = $4 
+                    WHERE id = $5`,
+    [name, quantity, unit, threshold, id],
+  );
+}
+
+async function deleteResource(id) {
+  await pool.query(`DELETE FROM resources WHERE id = $1`, [id]);
 }
 
 module.exports = {
@@ -61,4 +74,6 @@ module.exports = {
   getAllModuleResources,
   getResourceById,
   createResource,
+  updateResource,
+  deleteResource,
 };
