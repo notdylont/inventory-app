@@ -7,6 +7,7 @@ modulesRouter.get('/', modulesController.modulesGet);
 modulesRouter.get('/new', modulesController.newModulesGet);
 modulesRouter.get('/:id', modulesController.moduleShow);
 modulesRouter.post('/new', modulesController.newModulesPost);
+modulesRouter.get('/:id/delete', modulesController.deleteModuleConfirm);
 modulesRouter.post('/:id/delete', modulesController.deleteModule);
 modulesRouter.get('/:id/edit', modulesController.editModuleGet);
 modulesRouter.post('/:id/edit', modulesController.editModulePost);

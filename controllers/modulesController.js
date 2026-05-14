@@ -36,9 +36,20 @@ async function editModulePost(req, res) {
   res.redirect(`/modules/${moduleId}`);
 }
 
+async function deleteModuleConfirm(req, res) {
+  const mod = await db.getModuleById(req.params.id);
+  res.render('modules/delete', { mod: mod[0] });
+}
+
 async function deleteModule(req, res) {
-  const moduleId = req.params.id;
-  await db.deleteModule(moduleId);
+  if (req.body.adminPassword !== process.env.ADMIN_PASSWORD) {
+    const mod = await db.getModuleById(req.params.id);
+    return res.render('modules/delete', {
+      mod: mod[0],
+      error: 'Incorrect password',
+    });
+  }
+  await db.deleteModule(req.params.id);
   res.redirect('/modules');
 }
 module.exports = {
@@ -49,4 +60,5 @@ module.exports = {
   editModuleGet,
   editModulePost,
   deleteModule,
+  deleteModuleConfirm,
 };

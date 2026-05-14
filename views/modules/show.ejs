@@ -22,9 +22,7 @@
         <div class="actions-row">
           <a href="/resources/new?moduleId=<%= mod.id %>" class="btn btn-primary">+ Add resource</a>
           <a href="/modules/<%= mod.id %>/edit" class="btn">Edit</a>
-          <form action="/modules/<%= mod.id %>/delete" method="POST">
-            <button class="btn btn-danger" type="submit">Delete</button>
-          </form>
+          <a href="/modules/<%= mod.id %>/delete" class="btn btn-danger">Delete</a>
         </div>
       </div>
     </div>

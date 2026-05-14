@@ -236,3 +236,40 @@ label {
   gap: 8px;
   margin-top: 1.5rem;
 }
+
+.delete-card {
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.delete-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #2e1010;
+  border: 1px solid #4a2020;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.delete-warning p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.warning-icon {
+  font-size: 18px;
+  color: #e24b4a;
+  margin-top: 1px;
+}
+
+.error-msg {
+  font-size: 13px;
+  color: #e24b4a;
+  background: #2e1010;
+  border: 1px solid #4a2020;
+  border-radius: 8px;
+  padding: 8px 12px;
+}

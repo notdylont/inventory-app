@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete module</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <%- include('../partials/navbar.ejs') %>
+  <div class="page">
+
+    <div class="page-header">
+      <p class="breadcrumb">
+        <a href="/modules/<%= mod.id %>"><%= mod.name %></a> &rsaquo; <strong>Delete</strong>
+      </p>
+      <h1>Delete module</h1>
+    </div>
+
+    <div class="delete-card">
+      <div class="delete-warning">
+        <span class="warning-icon">⚠</span>
+        <div>
+          <p>You are about to permanently delete <strong><%= mod.name %></strong>.</p>
+          <p class="muted">All resources in this module will also be deleted. This cannot be undone.</p>
+        </div>
+      </div>
+
+      <% if (typeof error !== 'undefined') { %>
+        <p class="error-msg"><%= error %></p>
+      <% } %>
+
+      <form action="/modules/<%= mod.id %>/delete" method="POST">
+        <div class="form-group">
+          <label for="adminPassword">Admin password</label>
+          <input
+            type="password"
+            id="adminPassword"
+            name="adminPassword"
+            placeholder="Enter admin password to confirm"
+            required
+          />
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-danger">Confirm delete</button>
+          <a href="/modules/<%= mod.id %>" class="btn">Cancel</a>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</body>
+</html>
