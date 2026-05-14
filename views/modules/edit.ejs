@@ -6,6 +6,11 @@
     <title>Edit your module</title>
   </head>
   <body>
+    <%- include('../partials/navbar.ejs') %>
+    <p>
+      <a href="/modules/<%=mod.id %>"><%= mod.name %></a> >
+      <strong>Edit</strong>
+    </p>
     <form action="/modules/<%= mod.id %>/edit" method="POST">
       <label for="name">Module name:</label>
       <input type="text" name="name" value="<%= mod.name %>" required />
@@ -18,5 +23,6 @@
       />
       <button type="submit">Submit</button>
     </form>
+    <a href="/modules/<%= mod.id %>">Cancel</a>
   </body>
 </html>
