@@ -3,26 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit your module</title>
+    <title>Edit module</title>
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <%- include('../partials/navbar.ejs') %>
-    <p>
-      <a href="/modules/<%=mod.id %>"><%= mod.name %></a> >
-      <strong>Edit</strong>
-    </p>
-    <form action="/modules/<%= mod.id %>/edit" method="POST">
-      <label for="name">Module name:</label>
-      <input type="text" name="name" value="<%= mod.name %>" required />
-      <label for="description">Description:</label>
-      <input
-        type="text"
-        name="description"
-        value="<%= mod.description %>"
-        required
-      />
-      <button type="submit">Submit</button>
-    </form>
-    <a href="/modules/<%= mod.id %>">Cancel</a>
+    <div class="page">
+      <div class="page-header">
+        <p class="breadcrumb">
+          <a href="/modules/<%= mod.id %>"><%= mod.name %></a> &rsaquo;
+          <strong>Edit</strong>
+        </p>
+        <h1>Edit module</h1>
+      </div>
+      <form
+        action="/modules/<%= mod.id %>/edit"
+        method="POST"
+        class="form-card"
+      >
+        <div class="form-group">
+          <label for="name">Module name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value="<%= mod.name %>"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            value="<%= mod.description %>"
+          />
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Save changes</button>
+          <a href="/modules/<%= mod.id %>" class="btn">Cancel</a>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

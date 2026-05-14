@@ -3,18 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Module</title>
+    <title>New module</title>
+    <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <%- include('../partials/navbar.ejs') %>
-    <h3>Add a new module</h3>
-    <form action="/modules/new" method="POST">
-      <label for="name">Module name:</label>
-      <input type="text" name="name" required />
-      <label for="description">Description:</label>
-      <input type="text" name="description" required />
-      <button type="submit">Submit</button>
-    </form>
-    <a href="/modules">Cancel</a>
+    <div class="page">
+      <div class="page-header">
+        <h1>New module</h1>
+      </div>
+      <form action="/modules/new" method="POST" class="form-card">
+        <div class="form-group">
+          <label for="name">Module name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="description" />
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Create module</button>
+          <a href="/modules" class="btn">Cancel</a>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

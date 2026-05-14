@@ -1,42 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Resource</title>
-  </head>
-  <body>
-    <%- include('../partials/navbar.ejs') %>
-        <p><a href="/modules/<%=resource.module_id %>">Modules</a> > <strong><%= resource.name %></strong></p>
-    <form action="/resources/<%= resource.id %>/edit" method="POST">
-      <input type="hidden" name="resourceId" value="<%= resource.id %>" />
-      <input type="hidden" name="moduleId" value="<%= resource.module_id %>">
-      <label for="name">Resource name:</label>
-      <input type="text" name="name" value="<%= resource.name %>" required />
-      <label for="quantity">Quantity:</label>
-      <input
-        type="number"
-        name="quantity"
-        min="1"
-        value="<%= resource.quantity %>"
-        required
-      />
-      <label for="unit">Unit:</label>
-        <select name="unit">
-            <option value="kg" <%= resource.unit === 'kg' ? 'selected' : '' %>>kg</option>
-            <option value="liters" <%= resource.unit === 'liters' ? 'selected' : '' %>>liters</option>
-            <option value="units" <%= resource.unit === 'units' ? 'selected' : '' %>>units</option>
-            <option value="kWh" <%= resource.unit === 'kWh' ? 'selected' : '' %>>kWh</option>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit resource</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <%- include('../partials/navbar.ejs') %>
+  <div class="page">
+    <div class="page-header">
+      <p class="breadcrumb">
+        <a href="/modules/<%= resource.module_id %>">Module</a> &rsaquo;
+        <a href="/modules/<%= resource.module_id %>"><%= resource.name %></a> &rsaquo;
+        <strong>Edit</strong>
+      </p>
+      <h1>Edit resource</h1>
+    </div>
+    <form action="/resources/<%= resource.id %>/edit" method="POST" class="form-card">
+      <input type="hidden" name="moduleId" value="<%= resource.module_id %>" />
+      <div class="form-group">
+        <label for="name">Resource name</label>
+        <input type="text" id="name" name="name" value="<%= resource.name %>" required />
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" name="quantity" min="1" value="<%= resource.quantity %>" required />
+      </div>
+      <div class="form-group">
+        <label for="unit">Unit</label>
+        <select id="unit" name="unit">
+          <option value="units" <%= resource.unit === 'units' ? 'selected' : '' %>>units</option>
+          <option value="kg" <%= resource.unit === 'kg' ? 'selected' : '' %>>kg</option>
+          <option value="liters" <%= resource.unit === 'liters' ? 'selected' : '' %>>liters</option>
+          <option value="kWh" <%= resource.unit === 'kWh' ? 'selected' : '' %>>kWh</option>
         </select>
-      <label for="low_stock_threshold">Low stock Threshold:</label>
-      <input
-        type="number"
-        name="low_stock_threshold"
-        min="1"
-        value="<%= resource.low_stock_threshold %>"
-      />
-      <button type="submit">Submit</button>
+      </div>
+      <div class="form-group">
+        <label for="low_stock_threshold">Low stock threshold</label>
+        <input type="number" id="low_stock_threshold" name="low_stock_threshold" min="1" value="<%= resource.low_stock_threshold %>" />
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        <a href="/modules/<%= resource.module_id %>" class="btn">Cancel</a>
+      </div>
     </form>
-    <a href="/modules/<%= resource.module_id %>">Cancel</a>
-  </body>
+  </div>
+</body>
 </html>

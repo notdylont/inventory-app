@@ -10,7 +10,7 @@ module.exports = new Pool({
   password: PGPASSWORD,
   port: 5432,
 
-  // ssl: {
-  //   require: true,
-  // },
+  ssl: {
+    require: true,
+  },
 });

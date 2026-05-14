@@ -1,47 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Module details</title>
-  </head>
-  <body>
-    <%- include('../partials/navbar.ejs') %>
-    <p><a href="/modules">Modules</a> > <strong><%= mod.name %></strong></p>
-    <a href="/modules/<%= mod.id %>/edit">Edit</a>
-    <form action="/modules/<%= mod.id %>/delete" method="POST">
-      <button type="submit">Delete</button>
-    </form>
-    <a href="/resources/new?moduleId=<%= mod.id %>">Add a resource</a>
-    <h3><%= mod.name %></h3>
-    <p><%= mod.description %></p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module details</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <%- include('../partials/navbar.ejs') %>
+  <div class="page">
+
+    <div class="page-header">
+      <p class="breadcrumb">
+        <a href="/modules">Modules</a> &rsaquo; <strong><%= mod.name %></strong>
+      </p>
+      <div class="page-header-row">
+        <div>
+          <h1><%= mod.name %></h1>
+          <p class="muted"><%= mod.description %></p>
+        </div>
+        <div class="actions-row">
+          <a href="/resources/new?moduleId=<%= mod.id %>" class="btn btn-primary">+ Add resource</a>
+          <a href="/modules/<%= mod.id %>/edit" class="btn">Edit</a>
+          <form action="/modules/<%= mod.id %>/delete" method="POST">
+            <button class="btn btn-danger" type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Quantity</th>
-      <th>Unit</th>
-      <th>Low Stock Threshold</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% resources.forEach((resource) => { %>
-    <tr>
-      <td><%= resource.name %></td>
-      <td><%= resource.quantity %></td>
-      <td><%= resource.unit %></td>
-      <td><%= resource.low_stock_threshold %></td>
-      <td>
-        <a href="/resources/<%= resource.id %>/edit">Edit</a>
-        <form action="/resources/<%= resource.id %>/delete" method="POST">
-          <input type="hidden" name="moduleId" value="<%= resource.module_id %>">
-          <button type="submit">Delete</button>
-        </form>
-      </td>
-    </tr>
-    <% }) %>
-  </tbody>
-</table>
-  </body>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Unit</th>
+          <th>Threshold</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% resources.forEach((resource) => { %>
+        <tr>
+          <td><%= resource.name %></td>
+          <td><%= resource.quantity %></td>
+          <td class="muted"><%= resource.unit %></td>
+          <td class="muted"><%= resource.low_stock_threshold %></td>
+          <td>
+            <div class="actions-row">
+              <a href="/resources/<%= resource.id %>/edit" class="btn">Edit</a>
+              <form action="/resources/<%= resource.id %>/delete" method="POST">
+                <input type="hidden" name="moduleId" value="<%= resource.module_id %>">
+                <button class="btn btn-danger" type="submit">Delete</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+  </div>
+</body>
 </html>
