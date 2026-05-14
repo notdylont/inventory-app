@@ -19,6 +19,17 @@ async function createModule(name, desc) {
   ]);
 }
 
+async function updateModule(id, name, desc) {
+  await pool.query(
+    `UPDATE modules SET name = $1, description = $2 WHERE id = $3`,
+    [name, desc, id],
+  );
+}
+
+async function deleteModule(id) {
+  await pool.query(`DELETE FROM modules WHERE id = $1`, [id]);
+}
+
 async function getAllModuleResources(id) {
   const { rows } = await pool.query(
     `SELECT * FROM resources WHERE module_id = $1`,
@@ -45,6 +56,8 @@ module.exports = {
   getAllModules,
   getModuleById,
   createModule,
+  updateModule,
+  deleteModule,
   getAllModuleResources,
   getResourceById,
   createResource,

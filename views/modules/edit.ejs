@@ -3,16 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Module</title>
+    <title>Edit your module</title>
   </head>
   <body>
-    <%- include('../partials/navbar.ejs') %>
-    <h3>Add a new module</h3>
-    <form action="/modules/new" method="POST">
+    <form action="/modules/<%= mod.id %>/edit" method="POST">
       <label for="name">Module name:</label>
-      <input type="text" name="name" required />
+      <input type="text" name="name" value="<%= mod.name %>" required />
       <label for="description">Description:</label>
-      <input type="text" name="description" required />
+      <input
+        type="text"
+        name="description"
+        value="<%= mod.description %>"
+        required
+      />
       <button type="submit">Submit</button>
     </form>
   </body>

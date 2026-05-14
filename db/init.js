@@ -14,7 +14,7 @@ CREATE TABLE resources(
     quantity INTEGER NOT NULL,
     unit TEXT,
     low_stock_threshold INTEGER,
-    module_id INTEGER REFERENCES modules (id)
+    module_id INTEGER REFERENCES modules (id) ON DELETE CASCADE
 );
 `;
 

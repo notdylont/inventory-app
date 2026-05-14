@@ -7,7 +7,12 @@
   </head>
   <body>
     <%- include('../partials/navbar.ejs') %>
-    <a href="/modules">Back</a>
+    <p><a href="/modules">Modules</a> > <strong><%= mod.name %></strong></p>
+    <a href="/modules/<%= mod.id %>/edit">Edit</a>
+    <form action="/modules/<%= mod.id %>/delete" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+    <a href="/resources/new?moduleId=<%= mod.id %>">Add a resource</a>
     <h3><%= mod.name %></h3>
     <p><%= mod.description %></p>
     <table>
@@ -31,6 +36,5 @@
     <% }) %>
   </tbody>
 </table>
-    <a href="/resources/new?moduleId=<%= mod.id %>">Add a resource</a>
   </body>
 </html>

@@ -8,6 +8,7 @@
   <body>
     <%- include('../partials/navbar.ejs') %>
     <h3>Add a new resource:</h3>
+    <a href="/modules/<%= moduleId %>">Back</a>
     <form action="/resources" method="POST">
       <input type="hidden" name="moduleId" value="<%= moduleId %>" />
       <label for="name">Resource name:</label>
